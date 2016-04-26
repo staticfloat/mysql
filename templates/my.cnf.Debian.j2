@@ -33,7 +33,7 @@ query_cache_size        = 16M
 log_error = /var/log/mysql/error.log
 server-id               = {{ mysql_db_id }}
 
-{% if mysql_repl_role == 'master' %}
+{% if not mysql_repl_role is defined or mysql_repl_role == 'master' %}
 log_bin                 = mysql-bin
 expire_logs_days        = 10
 max_binlog_size         = 100M
